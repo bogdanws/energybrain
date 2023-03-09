@@ -2,7 +2,7 @@
   <img alt="EnergyBrainer Logo" width="400" src="https://github.com/DoggoDev-0/energybrain/blob/main/assets/images/logo.png" />
 </p>
 
-# EnergyBrainer | Optimise your energy consume ☼  
+# EnergyBrainer | Optimise your energy usage ☼  
 ## Project Documentation
 
 ### Introduction
