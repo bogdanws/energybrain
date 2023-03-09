@@ -7,7 +7,7 @@
 
 const char *ssid = "aaaaaaaaaaaaaaaaaaaaaaaa";  // Enter SSID here
 const char *password = "bogdan1234"; // Enter Password here
-#define SERVER_IP "192.168.96.186"       // IP of the server where you want to send data to
+#define SERVER_IP "87.229.115.161"       // IP of the server where you want to send data to
 
 // DHT Sensor
 uint8_t DHTPin = D7;
@@ -77,6 +77,6 @@ void loop()
   {
     Serial.println("WiFi Disconnected");
   }
-  // wait for 10 seconds
-  delay(5 * 1000);
+  // wait for 60 seconds
+  delay(60 * 1000);
 }

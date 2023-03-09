@@ -34,6 +34,23 @@ export default function Stats() {
         }
     }, [tempTargetTemperature]);
 
+    function getRecommendation() {
+        // if current room temperature is not set, return empty string
+        if (!currentRoomTemp || !currentRoom) {
+            return '';
+        }
+        // if target temperature difference is less than 1
+        if (Math.abs(currentRoomTemp - targetTemperature) < 1) {
+            return 'Temperatura este optimă în această cameră';
+        }
+        
+        if (currentRoomTemp > targetTemperature) {
+            return 'Vă recomandăm să reduceți încălzirea în această cameră cu ' + Math.round(100 - targetTemperature / currentRoomTemp * 100) + '%';
+        } else if (currentRoomTemp < targetTemperature) {
+            return 'Vă recomandăm să creșteți încălzirea în această cameră cu ' + Math.round(100 - currentRoomTemp / targetTemperature * 100) + '%';
+        }
+    }
+
     // get temperature chart data from server
     useEffect(() => {
         if (currentRoom) {
@@ -42,7 +59,7 @@ export default function Stats() {
                 // set current room temperature
                 setCurrentRoomTemp(temp);
                 // get temperature data
-                const temperatureData = data.map(d => d.temperature);
+                const temperatureData = data.map(d => d.temp);
                 // get humidity data
                 const humidityData = data.map(d => d.humidity);
                 // set temperature chart data
@@ -213,7 +230,7 @@ export default function Stats() {
                     paddingTop: 0,
                     alignSelf: 'flex-start',
                 }}>
-                    Temperatura medie a camerei este de {currentRoomTemp}°C. Temperatura dorită este de {targetTemperature}°C. Pentru a atinge temperatura dorită, puteți să deschideți ușile și ferestrele.
+                    Temperatura medie a camerei este de {currentRoomTemp}°C. Temperatura dorită este de {targetTemperature}°C. {getRecommendation()}
                 </Text>
             </ScrollView>
             {/* temperature setting */}

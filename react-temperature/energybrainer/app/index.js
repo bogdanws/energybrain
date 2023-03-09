@@ -291,7 +291,14 @@ export default function App() {
             if (room) {
                 const rooms = await getRooms();
                 const currentRoom = rooms.find(room => room.name === room);
-                setCurrentRoom(currentRoom);
+                // if the room is not found in the local storage, add it
+                if (!currentRoom) {
+                    await addRoom({ name: room });
+                    setRooms(await getRooms());
+                    setCurrentRoom({ name: room });
+                } else {
+                    setCurrentRoom(currentRoom);
+                }
             }
         }
         getStatsFromServer();
